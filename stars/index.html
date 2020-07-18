@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A dice betting game developed by DEP FOUNDATION">
+<link rel="shortcut icon" href="../images/favicon.png">
+<title>Stars | TRON SHINE</title>
+<script type="text/javascript" src="../js/vendor/tronweb.js"></script>
+<link rel="stylesheet" href="../css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../css/loader.css">
+<link rel="stylesheet" href="../css/uiStyle.css?ver=1.0">
+<link rel="stylesheet" href="../dappjs/eventTable.css?ver=1.0">
+<link rel="stylesheet" href="../css/uiPopups.css?ver=1.0">
+<link rel="stylesheet" href="../css/uiProgressMeter.css">
+<link rel="stylesheet" href="../css/font.css">
+<link rel="stylesheet" href="../css/media.css?ver=1.1">
+<link rel="stylesheet" href="../css/roullete.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../css/vendor/css/all.css">
+<link rel="stylesheet" href="../css/vendor/bootstrap-toggle.min.css">
+<script type="text/javascript" src="../js/vendor/jquery.js"></script>
+<script type="text/javascript" src="../js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/vendor/bootstrap-toggle.min.js"></script>
+</head>
+
+  <body>
+    <div id="loader-wrapper">
+      <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="progressBar">
+      <span></span>
+    </div>
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+    </div>
+
+    <div class="navigation">
+      <img src="../images/logo.png" alt="SHINE">
+      <ul class="nav-list">
+        <li class="houseBtn"><i class="fas fa-home"></i></li>
+
+        <li class="profileBtn"> <i class="fas fa-landmark"></i></li>
+        <li class="dividendBtn"> <i class="fas fa-coins"></i></li>
+        <li class="leaderboard-icon"><i class="fa fa-list-ol"></i></li>
+        <li class="infoBtn"> <i class="fas fa-question"></i></li>
+        <li class="trophy-icon"><i class="fas fa-trophy"></i></li>
+
+        <li class="chat-icon"><i class="fas fa-envelope"></i></li>
+      </ul>
+      <ul class="barsIcon">
+        <li class="userBtn"><button>login</button></li>
+        <li class="bar-icon"><i class="fas fa-bars"></i></li>
+      </ul>
+      <div class="homeToggler">
+        <ul>
+          <span>TRX DICE</span>
+          <li id="dice"> <a href="../dice" target="_blank">Dice</a> </li>
+          <li><a href="../trcdice" target="_blank">TRC Dice</a></li>
+          <span>Roulette</span>
+          <li id="roulette"><a href="../boxes" target="_blank">Boxes</a></li>
+          <li><a href="../hearts" target="_blank">Hearts</a></li>
+          <li><a href="../eggs" target="_blank">Eggs</a></li>
+          <li><a href="../stars" target="_blank">stars</a></li>
+        </ul>
+      </div>
+      <div class="infoToggler">
+        <ul>
+          <li class="newsBtn">News</li>
+          <li class="reffBtn">Refferal</li>
+          <li class="aboutBtn">About</li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdmFP-XLfzsaRjts2fiVPZH-0p0LbNPbEPQ_UJrtYbNgYFGuA/viewform?usp=sf_link" target="_blank">Bug</a></li></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfLYyGL7kSNyI13EAxLdSkLXDXt3E2L_Y8NOyymnH4WmsdnhA/viewform?usp=sf_link" target="_blank">Support</a></li></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfkrdMA1Q9q7enXDo89HJ0aTa9W9ThLvyfpcFFQ1vumMCWlyw/viewform?usp=sf_link" target="_blank">Token Listing</a></li>
+        </ul>
+
+      </div>
+    </div>
+    <!-- small popups for notification  -->
+
+  <div class="resultPopUp"></div>
+<div class="mainPanel">
+  <div class="left-side">
+    <div class="chat-head">
+      <p><i class="fas fa-envelope"></i> Message</p>
+    </div>
+    <div class="chat-body">
+      <div class="msg leftMsg">
+        <p>TABC...DEFG</p>
+        <p>hi welcome to dice game</p>
+    </div>
+
+    </div>
+    <div class="textmsgBox">
+      <button class="textareaBtn"><i class="fas fa-sign-in-alt"></i></button>
+      <textarea placeholder="Type message here" maxlength="150"></textarea>
+    </div>
+  </div>
+  <div class="main-game-panel">
+    <div class="popup-info-panel">
+      <div class="popup-info-panel-head">
+        SHINE BOARD<span>X</span>
+      </div>
+      <div class="popup-info-panel-body">
+        <p>Please login to tronLink then click</p>
+
+        <button>login</button>
+      </div>
+
+    </div>
+    <img src="../images/arrow.png" alt="arrow">
+    <div class="main-num-panel">
+      <span id="left"></span>
+      <span id="right"></span>
+      <div class="main-num-box"></div>
+    </div>
+    <div class="bettingBox">
+      <div class="betinfo">
+        <div class="betinfo-smbox">
+          <p>Win Chance  </p>
+          <span class="disWinC">100%</span>
+        </div>
+        <div class="betinfo-smbox">
+          <p>Multiplier  </p>
+          <span class="disMulti">1X</span>
+        </div>
+        <div class="betinfo-smbox">
+          <p>Mine SHINE  </p>
+          <span class="disMineShine">0.1</span>
+        </div>
+      </div>
+      <div class="color-picker">
+
+        <button class="selected" id="double">2X</button>
+        <button class="" id="triple">4X</button>
+        <button class="" id="fifth">8X</button>
+        <button class="" id="tenth">16X</button>
+
+      </div>
+
+
+
+      <div class="lower-main-box">
+      <div class="lower-left">
+        <div class="roulette-balAnim"></div>
+        <p>BALANCE: <span>0</span> TRX </p>
+         <label for="betAmout">BET
+          AMOUNT</label> <input type="number" id="betAmout" value="10"> <label for="PayOut">Pay out on Win</label>
+          <input type="number" id="PayOut" value="20.102" readonly>
+      </div>
+      <div class="lower-right">
+        <p>Withdrawable: <span>0</span> SHINE </p>
+        <ul class="inBtnGrp">
+          <li><button class="minbtn">Min</button></li>
+          <li><button class="maxbtn">Max</button></li>
+          <li><button class="doublebtn">X2</button></li>
+          <li><button class="halfbtn">1/2</button></li>
+        </ul>
+        <button class="Rolling-btn">Roll</button>
+        <div class="checkbox">
+          <label>
+            <input class="autoToggler" type="checkbox" data-toggle="toggle" data-size="mini" data-style="ios" data-onstyle="success" data-offstyle="warning">
+
+          </label>
+          <a class="trigABPop">Auto Betting <i class="fas fa-question-circle"></i></a>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input class="ultraToggler" type="checkbox" data-toggle="toggle" data-size="mini" data-style="ios" data-onstyle="success" data-offstyle="warning">
+
+          </label>
+          <a class="trigABPop">Ultra Speed Bet <i class="fas fa-question-circle"></i></a>
+        </div>
+      </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="right-side">
+    <div class="right-head">
+      <p><i class="fas fa-trophy"></i>Drops</p>
+    </div>
+    <div class="right-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Token</th>
+            <th scope="col">Wager</th>
+            <th scope="col">Pool</th>
+          </tr>
+        </thead>
+        <tbody class="rankingBody">
+
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+<div class="bottom-panel" id="last">
+  <div class="bottom-panel-head">
+    <ul class="bottom-panel-head-list">
+      <li class="myBetsBtn">My Bets</li>
+      <li class="allBetBtn">All Bets</li>
+      <li class="customBetBtn">Stars Bets</li>
+
+    </ul>
+  </div>
+  <div class="bottom-panel-body">
+    <div class="allbets">
+      <table class="table bettingHistory" >
+        <thead >
+          <tr>
+            <th>Player</th>
+            <th>PREDICTION</th>
+            <th>LUCKY</th>
+            <th>BETS</th>
+            <th>PAYOUT</th>
+          </tr>
+        </thead >
+        <tbody class="allBetsHistory">
+
+
+
+        </tbody>
+      </table>
+    </div>
+    <div class="custombets">
+      <table class="table bettingHistory" >
+        <thead >
+          <tr>
+            <th>Player</th>
+            <th>PREDICTION</th>
+            <th>LUCKY</th>
+            <th>BETS</th>
+            <th>PAYOUT</th>
+          </tr>
+        </thead >
+        <tbody class="customBetsHistory">
+
+
+
+        </tbody>
+      </table>
+    </div>
+    <div class="myBets">
+      <table class="table bettingHistory" >
+        <thead >
+          <tr>
+            <th>Player</th>
+            <th>PREDICTION</th>
+            <th>LUCKY</th>
+            <th>BETS</th>
+            <th>PAYOUT</th>
+          </tr>
+        </thead >
+
+        <tbody class="myBetsHistory">
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- info panel-->
+  <div class="terms-info-section">
+    <h4>Connect us on social Media</h4>
+    <ul class="social-links">
+      <li> <a href="https://t.me/TronShine" target="_blank"><i class="fab fa-telegram-plane"></i></a> </li>
+      <li> <a href="https://twitter.com/ShineTron" target="_blank"><i class="fab fa-twitter"></i></a> </li>
+    </ul>
+    <p>If you reside in a location where lottery, gambling, or betting over the internet is illegal, please do not click on anything related to these activities on this site. You must be 21 years of age to click on any gambling related items even if it is legal to do so in your location. Recognising that the laws and regulations involving online gaming are different everywhere, players are advised to check with the laws that exist within their own jurisdiction or region to ascertain the legality of the activities which are covered.</p>
+    <p>The games provided by TRON SHINE are based on blockchain, fair, and transparency. When you start playing these games, please take note that online gambling and lottery is an entertainment vehicle and that it carries with it a certain degree of financial risk. Players should be aware of these risks and govern themselves accordingly.</p>
+    <span> Copyright &copy; 2020, TRON SHINE</span>
+    <span>All trademarks and copyrights belong to tronshine.org</span>
+    <span> Developed By : <a href="https://t.me/Prakash_DEP" target="_blank">Prakash</a>
+      &amp; Managed By : <a href="https://t.me/NishantSinghOcl" target="_blank">Nishant</a> </span>
+    <span> Co-developer : <a href="https://t.me/reaganwilson" target="_blank">Reagan</a>
+      &amp; Marketting-head : <a href="https://t.me/sahil_DEP" target="_blank">Sahil</a> </span>
+      <span> Powered By : <a href="https://t.me/DEPFoundationOfficial" target="_blank">DEP FOUNDATION</a></span>
+
+
+  </div>
+</div>
+
+
+<!-- popup of profile -->
+<div class="popub-bg profile-box">
+  <div class="popup-box ">
+    <div class="close-pop"><i class="fas fa-times"></i></div>
+    <h3>PROFILE</h3>
+    <div class="profile-sm-box" >
+      <p>TOTAL WAGER</p>
+      <p id="totalWager">0</p>
+    </div>
+    <div class="profile-sm-box" >
+      <p>MY WAGER</p>
+      <p id="myWager"> 0</p>
+    </div>
+    <div class="profile-sm-box" >
+      <p>TOTAL FROZEN</p>
+      <p id="totalFrozen">0</p>
+    </div>
+    <div class="profile-sm-box" >
+      <p>MY FROZEN</p>
+      <p id="myFrozen">0</p>
+    </div>
+    <div class="profile-sm-box">
+      <p>TOTAL BETS</p>
+      <p id="totalBets">0</p>
+    </div>
+    <div class="profile-sm-box">
+      <p>CONTRACT BALANCE</p>
+      <p id="contractBalance">0</p>
+    </div>
+    <h5>My expected Dividends</h5>
+    <table class="table profileTable" >
+      <thead>
+        <tr>
+          <th scope="col">Token</th>
+          <th scope="col">Pool</th>
+          <th scope="col" >Expected dividend</th>
+        </tr>
+      </thead >
+      <tbody class="trctokenBody">
+      </tbody>
+    </table>
+    <p>Token distribution will be on every Sunday starts from UTC 12PM</p>
+    <p>Note: Distrubution depends on the quantity of token</p>
+  </div>
+</div>
+<!-- popup of dividend -->
+<div class="popub-bg dividend-box">
+  <div class="popup-box">
+    <div class="close-pop"><i class="fas fa-times"></i></div>
+    <img src="../images/logo.png" alt="shine">
+    <p class="iniStage">Mining Stage: 1-1 (Play <span>100</span> TRX to mine 1 SHINE)</p>
+    <div class="meter">
+      <p>0/1,0000,000</p>
+      <div class="progress"></div>
+    </div>
+    <p class="nextStage">Next Mining Stage: 1-2 (Play <span>101</span> TRX to mine 1 SHINE)</p>
+    <div class="poolBox">
+      <p class="infopoolTrx">Available Pool Balance</p>
+      <p class="poolTrx"> 0 TRX</p>
+      <p>A total of <span class="tMined">0</span> SHINE has been Mined And <span class="tFrozen">0</span> is frozen - You will receive <span class="tMyexpTRX">0</span> TRX</p>
+      <p>CountDown for Pool Distribution :</p>
+      <p class="dividend-timer">23:59:59</p>
+    </div>
+    <div class="mined">
+      <label for="withdraw-input">Available</label>
+      <input type="number" name="" value="0" id="withdraw-input" readonly>
+      <button type="button" name="button">WITHDRAW</button>
+
+    </div>
+    <div class="frozen">
+      <label for="freeze-input">Withdrawn</label>
+      <input type="number" name="" value="0" id="freeze-input" readonly>
+      <button type="button" name="button">FREEZE</button>
+    </div>
+    <div class="unfreeze">
+      <label for="unfreeze-input">Frozen</label>
+      <input type="number" name="" value="0" id="unfreeze-input" readonly>
+      <button type="button" name="button">UNFREEZE</button>
+    </div>
+    <p class="freezingInfo">SHINE Will be Available for unfreezing after 24Hours of freezing request.</p>
+
+<div class="unfreezeApprove-box">
+  <div class="unfreezeApprove-left">
+    <p>Requested shine to Unfreeze</p>
+    <span>0.000</span>
+  </div>
+  <div class="unfreezeApprove-right">
+    <p>Unfreeze after</p>
+    <span>23:59:59</span><br>
+    <button type="button" name="button">Approve</button>
+  </div>
+</div>
+  </div>
+</div>
+<!-- popup of news -->
+<div class="popub-bg news-box">
+  <div class="popup-box ">
+
+    <div class="close-pop"><i class="fas fa-times"></i></div>
+    <p class="announcement-head">Twitter</p>
+    <div class="news-social">
+
+      <a href="https://twitter.com/shinetron" class="twitter-follow-button" data-show-count="false">Follow @TRONSHINE</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <a href="https://twitter.com/shinetron" class="twitter-mention-button" data-show-count="false">Tweet to @TRONSHINE</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <a class="twitter-timeline" href="https://twitter.com/shinetron">Tweets by TRONSHINE</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    </div>
+  </div>
+</div>
+<!-- popup of ranking -->
+<div class="popub-bg rank-box">
+  <div class="popup-box">
+    <div class="close-pop"><i class="fas fa-times"></i></div>
+
+    <p class="rank-head">LEADER BOARD</p>
+    <p class="quoteForTop">Our Best Players</p>
+    <table class="table rankTable" >
+      <thead>
+        <tr>
+          <th scope="col">RANK</th>
+          <th scope="col">TOP PLAYERS</th>
+          <th scope="col" >PLAYED</th>
+        </tr>
+      </thead >
+      <tbody class="rankTable-body">
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<!-- popup of ranking end here-->
+<!-- popup of Refferal box -->
+<div class="popub-bg ref-box">
+  <div class="popup-box">
+    <div class="close-pop"><i class="fas fa-times"></i></div>
+
+    <p class="Refferal-head">My Refferal Zone</p>
+    <p class="quoteForTop">Get rewarded just by referring your friends!</p>
+    <label for="refLink">Refferal link</label>
+    <div class="myRefDiv">
+      <input type="text"  value="" id="refLink" readonly />
+      <button type="copy">COPY</button>
+    </div>
+    <p class="refDet">Enjoy lifetime rewards just by referring your friends! Receive 0.2% of all their winnings. All rewards are sent out automatically through our script. Just copy the link above and share it to all your friends!</p>
+    <div class="refInfo">
+      <div class="refInfo-item">
+        <label for="activeRef">Total active referred</label>
+        <input type="number" value="0" id="activeRef" readonly/>
+      </div>
+      <div class="refInfo-item">
+        <label for="visitorRef">Total referred</label>
+        <input type="number" value="0" id="visitorRef" readonly/>
+      </div>
+
+
+
+    </div>
+    <div class="earnedByRef">
+      <label for="earnedByRef">Referral Bonus</label>
+      <input type="number" value="0" id="earnedByRef" readonly/>
+    </div>
+  </div>
+</div>
+<!-- popup of Refferal end here-->
+<!-- popup of faq -->
+<div class="popub-bg about-box">
+  <div class="popup-box">
+    <div class="close-pop"><i class="fas fa-times"></i></div>
+
+    <p class="rank-head">About TRON SHINE</p>
+    <p class="quoteForTop">Announcements</p>
+    <ol>
+      <li>Total Supply = 1 Billion (0 Token preminted)</li>
+      <li>0 SHINE belong to foundation and core developer</li>
+      <li>Trx betting can mine SHINE trc20 token irrespective of the result</li>
+      <li>By Freezing SHINE You will receive Dividends.<br>Daily TRX Dividend
+        <br>Weekly Token Dividend</li>
+      <li>70% of TRX pool will be distributed between frozen SHINE</li>
+      <li>50% of Other Token pool will be distributed among frozen SHINE on Sunday</li>
+      <li>50% betting fees will be provided by contract</li>
+      <li>No dividend for playing using any token other than TRX</li>
+      <li>20% of foundation profit will be used in developed of other Games</li>
+      <li>10% of foundation profit will be used in server cost and maintainance charge</li>
+      <li>20% of foundation profit will be used in marketting and promotion and energy fees</li>
+      <li>Only 15% will be shared between core developers</li>
+    </ol>
+
+  </div>
+</div>
+<!-- popup of faq end here-->
+
+</div>
+<script type="text/javascript" src="../js/vendor/shine.js?ver=1.0"></script>
+<script type="text/javascript" src="../js/db.js?ver=1.0"></script>
+<script type="text/javascript" src="../js/domstring.js?ver=1.0"></script>
+<script type="text/javascript" src="script.js?ver=1.0"></script>
+<script type="text/javascript" src="../js/uiDom.js?ver=1.0"></script>
+<script type="text/javascript" src="../js/noLoginApicalls.js"></script>
+<script type="text/javascript" src="body.js"></script>
+<script type="text/javascript" src="../dappjs/event.js"></script>
+<script type="text/javascript" src="../js/topPlayer.js?ver=1.0"></script>
+<script type="text/javascript" src="../js/private.js?ver=1.2"></script>
+<script type="text/javascript" src="../js/tokenDice/trc10private.js?ver=1.2"></script>
+<script type="text/javascript" src="../js/chatting.js?ver=1.0"></script>
+<script type="text/javascript" src="../dappjs/dappController.js"></script>
+<script type="text/javascript" src="../js/loader.js"></script>
+<script type="text/javascript" src="../dappjs/general.js"></script>
+  </body>
+</html>
