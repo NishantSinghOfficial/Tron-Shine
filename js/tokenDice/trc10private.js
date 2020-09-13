@@ -3,7 +3,7 @@ const listId = [1001909,1002000,1000001,1000226,1002413,1001313,1001351,1001316,
 var PlayabletokenId = {
 
   1001909:{name:'DEP',wager:'0',precision:'5',min:'1000',poolBal:'0',myValue:'0',poolLmtToken:'1000000'},//1001909
-  1002000:{name:'BTT',wager:'0',precision:'6',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'50000'},//1002000
+  1002000:{name:'BTT',wager:'0',precision:'6',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'0'},//1002000
   1002366:{name:'DTL',wager:'0',precision:'0',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'500000'},//1002366
   1002531:{name:'DTLS',wager:'0',precision:'5',min:'1000',poolBal:'0',myValue:'0',poolLmtToken:'1000000'},
   //1002095:{name:'FOP',wager:'0',precision:'0',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'5000000'},//1002366

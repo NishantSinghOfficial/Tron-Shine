@@ -56,7 +56,7 @@ var publicData = (function(){
         _bal += _bal2;
       publicString.contractBal =floor(_bal,2);
       publicString.totaltrxn = res.data[0].trxCount + res2.data[0].trxCount +125428;
-      let pool = (publicString.contractBal - 20000)*0.7;
+      let pool = (publicString.contractBal - 18000)*0.7;
       publicString.poolBalance = floor(pool,2);
       $(DOMStrings.poolTrx).text(publicString.poolBalance + ' TRX');
       //console.log(publicString.contractBal);

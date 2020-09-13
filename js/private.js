@@ -269,7 +269,7 @@ const dividendPopData = async ()=>{
   let _totalMined = (5000000 * (thisStageNum - 1)) + thisStageMined;
   publicString.totalMined = floor(_totalMined,2);
   let _pool1 = await tronWeb.trx.getUnconfirmedBalance(diceGame) - 10000000000;
-  let _pool2 = await tronWeb.trx.getUnconfirmedBalance(barsctrt) - 10000000000;
+  let _pool2 = await tronWeb.trx.getUnconfirmedBalance(barsctrt) - 8000000000;
   let _pool = _pool1 + _pool2;
   publicString.poolBalance  = floor(_pool/sixZero,2);
   let _myDiv = 0;
@@ -320,7 +320,7 @@ const apicall = async () =>{
       _bal += _bal2;
     publicString.contractBal =floor(_bal,2);
     publicString.totaltrxn = res.data[0].trxCount + res2.data[0].trxCount + 125428;
-    let pool = (publicString.contractBal - 20000)*0.7;
+    let pool = (publicString.contractBal - 18000)*0.7;
     publicString.poolBalance = floor(pool,2);
     $(DOMStrings.poolTrx).text(publicString.poolBalance + ' TRX');
     //console.log(publicString.contractBal);

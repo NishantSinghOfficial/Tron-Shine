@@ -32,7 +32,7 @@ var noLogin = (function(){
 
         publicDataFromApi.contractBal =floor(_bal,2);
         publicDataFromApi.totaltrxn = (res.data[0].trxCount + res2.data[0].trxCount +125428);
-        let pool = (publicDataFromApi.contractBal - 20000);
+        let pool = (publicDataFromApi.contractBal - 18000);
         if(pool >0){
           pool*= 0.7;
         }
