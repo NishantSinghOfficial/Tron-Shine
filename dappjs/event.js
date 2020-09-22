@@ -40,7 +40,7 @@ var publicbars = (function(){
     //console.log(thisDappName +' thisDappName');
     await tronWeb.getEventResult(barsctrt, {
       eventName:'barsbetevent',
-      size: 100,
+      size: 50,
       //onlyConfirmed: true,
       filters: {
         dappType: thisDappName
@@ -101,7 +101,7 @@ async function myHistory() {
   //console.log('name on the tronlink is'+name);
   await tronWeb.getEventResult(barsctrt, {
     eventName:'barsbetevent',
-    size: 100,
+    size: 50,
     //onlyConfirmed: true,
     filters: {
       addr: myAddrChck,

@@ -24,7 +24,7 @@ var bethistory = (function(){
     let allTable = "";
     await tronWeb.getEventResult(diceGame, {
       eventName:'dicebetevent',
-      size: 100
+      size: 50
       //onlyConfirmed: true
       //page: 2
     }).then(async data => {
@@ -100,7 +100,7 @@ var bethistory = (function(){
     //console.log('name on the tronlink is'+name);
     await tronWeb.getEventResult(diceGame, {
       eventName:'dicebetevent',
-      size: 100,
+      size: 50,
       //onlyConfirmed: true,
       filters: {
         "addr": myAddrChck

@@ -1,9 +1,9 @@
-const listId = [1001909,1002000,1000001,1000226,1002413,1001313,1001351,1001316,1000322,1002670,1001092,  1002366,1002531,1000985,1002646,1002145,1001584,1001107];
+const listId = [1002000,1001909,1002413,1001092,  1002366,1002531,1000985,1002646,1002145,1001584];
 
 var PlayabletokenId = {
 
   1001909:{name:'DEP',wager:'0',precision:'5',min:'1000',poolBal:'0',myValue:'0',poolLmtToken:'1000000'},//1001909
-  1002000:{name:'BTT',wager:'0',precision:'6',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'0'},//1002000
+  1002000:{name:'BTT',wager:'0',precision:'6',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'50000'},//1002000
   1002366:{name:'DTL',wager:'0',precision:'0',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'500000'},//1002366
   1002531:{name:'DTLS',wager:'0',precision:'5',min:'1000',poolBal:'0',myValue:'0',poolLmtToken:'1000000'},
   //1002095:{name:'FOP',wager:'0',precision:'0',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'5000000'},//1002366
@@ -13,16 +13,16 @@ var PlayabletokenId = {
   1002646:{name:'TALC',wager:'0',precision:'6',min:'10',poolBal:'0',myValue:'0',poolLmtToken:'10000'},
   1001584:{name:'SUDWA',wager:'0',precision:'0',min:'1200',poolBal:'0',myValue:'0',poolLmtToken:'12000000'},
 
-  1000001:{name:'SEED',wager:'0',precision:'0',min:'8',poolBal:'0',myValue:'0',poolLmtToken:'0'},
-  1000226:{name:'TERC',wager:'0',precision:'0',min:'40',poolBal:'0',myValue:'0',poolLmtToken:'0'},
-  1000322:{name:'TRUC',wager:'0',precision:'0',min:'32000',poolBal:'0',myValue:'0',poolLmtToken:'0'},
+//   1000001:{name:'SEED',wager:'0',precision:'0',min:'8',poolBal:'0',myValue:'0',poolLmtToken:'0'},
+//   1000226:{name:'TERC',wager:'0',precision:'0',min:'40',poolBal:'0',myValue:'0',poolLmtToken:'0'},
+//   1000322:{name:'TRUC',wager:'0',precision:'0',min:'32000',poolBal:'0',myValue:'0',poolLmtToken:'0'},
   1002413:{name:'BTZC',wager:'0',precision:'6',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'0'},
-  1002670:{name:'SCC',wager:'0',precision:'6',min:'7',poolBal:'0',myValue:'0',poolLmtToken:'0'},
+//   1002670:{name:'SCC',wager:'0',precision:'6',min:'7',poolBal:'0',myValue:'0',poolLmtToken:'0'},
   1001092:{name:'SCT',wager:'0',precision:'0',min:'1400',poolBal:'0',myValue:'0',poolLmtToken:'0'},
-  1001313:{name:'CGIZA',wager:'0',precision:'0',min:'9',poolBal:'0',myValue:'0',poolLmtToken:'0'},
-  1001351:{name:'CDF',wager:'0',precision:'0',min:'250',poolBal:'0',myValue:'0',poolLmtToken:'0'},
-  1001316:{name:'TSY',wager:'0',precision:'0',min:'200',poolBal:'0',myValue:'0',poolLmtToken:'0'},
-  1001107:{name:'KAOS',wager:'0',precision:'0',min:'6',poolBal:'0',myValue:'0',poolLmtToken:'0'}
+//   1001313:{name:'CGIZA',wager:'0',precision:'0',min:'9',poolBal:'0',myValue:'0',poolLmtToken:'0'},
+//   1001351:{name:'CDF',wager:'0',precision:'0',min:'250',poolBal:'0',myValue:'0',poolLmtToken:'0'},
+//   1001316:{name:'TSY',wager:'0',precision:'0',min:'200',poolBal:'0',myValue:'0',poolLmtToken:'0'},
+//   1001107:{name:'KAOS',wager:'0',precision:'0',min:'6',poolBal:'0',myValue:'0',poolLmtToken:'0'}
 }
 
 const translateValue = (val) =>{

@@ -1,5 +1,5 @@
 var chattingApp = (function () {	
-const contractChatApi = 'https://api.trongrid.io/event/contract/'+chatContract+'?size=200&page=1';
+const contractChatApi = 'https://api.trongrid.io/event/contract/'+chatContract+'?size=50&page=1';
 
 	//////////Checksum~to~hex~offline//////////////////
 	function checksumHex(checksum) {

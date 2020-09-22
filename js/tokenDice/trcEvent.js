@@ -28,7 +28,7 @@ var bethistory = (function(){
     let resultCount = 0;
     await tronWeb.getEventResult(trcGameAddress, {
       eventName:'trc10BetEvent',
-      size: 100,
+      size: 50,
       //onlyConfirmed: true
       //page: 2
     }).then(result => {
@@ -91,7 +91,7 @@ var bethistory = (function(){
     let allTable = "";
     await tronWeb.getEventResult(trcGameAddress, {
       eventName:'trc10BetEvent',
-      size: 100
+      size: 50
       //onlyConfirmed: true
       //page: 2
     }).then(async data => {
@@ -164,7 +164,7 @@ var bethistory = (function(){
     }
     await tronWeb.getEventResult(trcGameAddress, {
       eventName:'trc10BetEvent',
-      size: 100,
+      size: 50,
       //onlyConfirmed: true,
       filters: {
         "addr": myAddrChck

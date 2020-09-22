@@ -4,7 +4,7 @@
 */
 const dicecontractApi = 'https://apilist.tronscan.org/api/contract?contract='+diceGame;
 const getBarApi = 'https://apilist.tronscan.org/api/contract?contract='+barsctrt;
-const barsEventApi = 'https://api.trongrid.io/event/contract/'+barsctrt+'?size=100&page=1';
+const barsEventApi = 'https://api.trongrid.io/event/contract/'+barsctrt+'?size=50&page=1';
 
 
 
