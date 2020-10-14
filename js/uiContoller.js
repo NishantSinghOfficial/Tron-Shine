@@ -64,7 +64,7 @@ async function clickLogIn(){
     refresh();
     $('.progressBar span').animate({ width: '100%' }, 'slow');
     $('body').addClass('loaded');
-    $('.popup-info-panel-body p' ).text('please open using google chrome and install tron link chrome extension or using any tron supported wallet');
+    $('.popup-info-panel-body p' ).text('Please open using google chrome and install TronLink chrome extension or using any tron supported wallet');
     $('.popup-info-panel').show();
   }else if (!tronWeb.defaultAddress.base58) {
     //console.log('no addr');
