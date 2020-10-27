@@ -11,9 +11,9 @@ const barsctrt = 'THKHurBR3MA7zPLnEqNY2fuvW3jgsHU81o';
 
 const contractApi = 'https://apilist.tronscan.org/api/contract?contract='+diceGame+'';
 const barcontractApi = 'https://apilist.tronscan.org/api/contract?contract='+barsctrt;
-const contractEventApi = 'https://api.trongrid.io/event/contract/'+diceGame+'?size=200&page=1';
+const contractEventApi = 'https://api.trongrid.io/event/contract/'+diceGame+'?size=50&page=1';
 const trcBalApi = 'https://api.trongrid.io/v1/accounts/'+trcGameAddress;
-const trccontractApi = 'https://api.trongrid.io/event/contract/'+trcGameAddress+'?size=100&page=1';
+const trccontractApi = 'https://api.trongrid.io/event/contract/'+trcGameAddress+'?size=50&page=1';
 /***************/
  async function fetchApi(url){
    try {

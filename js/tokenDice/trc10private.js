@@ -1,4 +1,4 @@
-const listId = [1002000,1001909,1002413,1001092,  1002366,1002531,1000985,1002646,1002145,1001584];
+const listId = [1002000,1001909,1002413,1001092,1002748,  1002366,1002531,1000985,1002646,1002145,1001584];
 
 var PlayabletokenId = {
 
@@ -12,6 +12,8 @@ var PlayabletokenId = {
   1002145:{name:'TWN',wager:'0',precision:'0',min:'100000',poolBal:'0',myValue:'0',poolLmtToken:'1000000000'},
   1002646:{name:'TALC',wager:'0',precision:'6',min:'10',poolBal:'0',myValue:'0',poolLmtToken:'10000'},
   1001584:{name:'SUDWA',wager:'0',precision:'0',min:'1200',poolBal:'0',myValue:'0',poolLmtToken:'12000000'},
+   1002748:{name:'BONUS',wager:'0',precision:'6',min:'40',poolBal:'0',myValue:'0',poolLmtToken:'40000'},
+   //1002748
 
 //   1000001:{name:'SEED',wager:'0',precision:'0',min:'8',poolBal:'0',myValue:'0',poolLmtToken:'0'},
 //   1000226:{name:'TERC',wager:'0',precision:'0',min:'40',poolBal:'0',myValue:'0',poolLmtToken:'0'},

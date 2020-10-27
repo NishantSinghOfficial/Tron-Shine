@@ -294,6 +294,7 @@ var bethistory = (function(){
   const hisInItUi = async () => {
 
       //findAlltrcbetdata();
+      allHistory();
       myHistory();
       watchNewtrcBet();
 

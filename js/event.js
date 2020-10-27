@@ -24,7 +24,7 @@ var bethistory = (function(){
     let allTable = "";
     await tronWeb.getEventResult(diceGame, {
       eventName:'dicebetevent',
-      size: 50
+      size: 50,
       //onlyConfirmed: true
       //page: 2
     }).then(async data => {

@@ -113,7 +113,7 @@ function rollOverRange(){
   betBuilder.betPrediction = 50;
 }
 $(document).ready(function() {
-  betBuilder.idOfToken = 1001909;
+  betBuilder.idOfToken = 1002000;
   rollOverRange();
 
 
@@ -330,7 +330,7 @@ $('#'+_x).find('.playButton').html('<i class="fas fa-check-circle"></i>');
 
  });
 $(window).load(function() {
-   let _x = 1001909;
+   let _x = 1002000;
     betBuilder.idOfToken = _x;
    let _name = PlayabletokenId[_x].name;
    let _val = PlayabletokenId[_x].myValue;
@@ -355,8 +355,8 @@ $(window).load(function() {
          _val =_val/(10 ** _precision);
          _val = floor(_val,2);
          $(DOMStrings.disTokenBal).text(_val);
-         $('tr.1001909 th').css('color',' red');
-         $('#1001909').find('.playButton').html('<i class="fas fa-check-circle"></i>');
+         $('tr.1002000 th').css('color',' red');
+         $('#1002000').find('.playButton').html('<i class="fas fa-check-circle"></i>');
          clearInterval(setForOnloadHead);
        }
      },2000);
