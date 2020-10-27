@@ -94,7 +94,7 @@ async function clickLogIn(){
   } catch (e) {
     $('.progressBar span').animate({ width: '100%' }, 'slow');
     $('body').addClass('loaded');
-    $('.popup-info-panel-body p' ).text('no Internet Connection');
+    $('.popup-info-panel-body p' ).text('No Internet Connection');
     $('.popup-info-panel').show();
     refreshForBalance();
       //console.log('no internet');
