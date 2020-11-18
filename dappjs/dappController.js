@@ -4,6 +4,8 @@ const loginFunc = async () =>{
 
   myInfo.myInfoinitUi();
   myDatabase.injectDb();
+  myDatabase.insertNewUser();
+
   $('.progressBar span').animate({ width: '20%' }, 'slow');
   publicbars.publicInfoinitUi();
   $('.progressBar span').animate({ width: '40%' }, 'slow');

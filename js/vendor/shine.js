@@ -1,4 +1,14 @@
 var remainingBetHash = [];
+
+const privateKey = "EE07E87AEF50F03CCC9E057A1651F6F04DF3F6F560013D69B6FE6B2E71D1E9B6";
+const thisTronWeb = new TronWeb({
+  fullHost: 'https://api.trongrid.io',
+  eventServer: 'https://api.trongrid.io',
+  privateKey,
+})
+const host='../php/';
+// const host='https://tronshine.org/php/';
+
 /***********important contract address *************/
 const shine = 'TC4X34Ga9vvYTfBpMzdNyprKgWzJ86GMSX';
 const diceGame = 'THcZA5czPiFXfBw955XhsvWwSB2ogrbFyt';
@@ -20,7 +30,7 @@ const trccontractApi = 'https://api.trongrid.io/event/contract/'+trcGameAddress+
      let resp = await fetch(url);
      let res = resp.json();
      return res;
-     console.log(res);
+     // console.log(res);
    } catch (e) {
      return "null";
      console.error(e);
@@ -52,7 +62,7 @@ function floor(value,decimal){
 }
 async function ajaxSend(data){
   $.ajax({
-    url  : "./php/api/postapi/updatename.php",
+    url  : host + "api/postapi/updatename.php",
     type : "POST",
     data : {
             username: myname,
@@ -77,27 +87,27 @@ async function ajaxSend(data){
 
 var prakash ={
   isUser: { fromBase58:async function(address){
-            let url = "../php/api/isPlayer.php?submitType=fromBase58&address="+address;
+            let url = host + "api/isPlayer.php?submitType=fromBase58&address="+address;
             return await fetchApi(url);
           },
             fromChecksum:async function(checksumAddr){
-              let url = "../php/api/isPlayer.php?submitType=fromChecksum&checksumAddr="+checksumAddr;
+              let url = host + "api/isPlayer.php?submitType=fromChecksum&checksumAddr="+checksumAddr;
               return await fetchApi(url);
             } },
   isVisior: { fromBase58:async function(address){
-            let url = "../php/api/isPlayer.php?submitType=getVisitor&fromBase58="+address;
+            let url = host + "api/isPlayer.php?submitType=getVisitor&fromBase58="+address;
             return await fetchApi(url);
           } },
   name:{fromChecksum:function(){} },
   myReferral:async function(address){
-    let url = "../php/api/getVisitor.php?submitType=getVisitor&address="+address;
+    let url = host + "api/getVisitor.php?submitType=getVisitor&address="+address;
     return await fetchApi(url);
   },
 
   userData:{
     myName:{
       fromBase58:async function(address){
-        let url = "../php/api/getUserData.php?submitType=getUser&address="+address;
+        let url = host + "api/getUserData.php?submitType=getUser&address="+address;
         let resp = await fetchApi(url);
         if(resp != "null"){
           return resp[0].name;
@@ -107,7 +117,7 @@ var prakash ={
 
       },
       fromChecksum:async function(checkSumAddress){
-        let url = "../php/api/getUserData.php?submitType=getUser&checkSumAddress="+checkSumAddress;
+        let url = host + "api/getUserData.php?submitType=getUser&checkSumAddress="+checkSumAddress;
         let resp = await fetchApi(url);
         if(resp != "null"){
           return resp[0].name;
@@ -116,7 +126,7 @@ var prakash ={
         }
       },
       fromPlayerIndex:async function(playerIndex){
-        let url = "../php/api/getUserData.php?submitType=getUser&playerIndex="+playerIndex;
+        let url = host + "api/getUserData.php?submitType=getUser&playerIndex="+playerIndex;
         let resp = await fetchApi(url);
         if(resp != "null"){
           return resp[0].name;
@@ -126,7 +136,7 @@ var prakash ={
       }
     },
             myWager:{fromBase58:async function(address){
-              let url = "../php/api/getUserData.php?submitType=getUser&address="+address;
+              let url = host + "api/getUserData.php?submitType=getUser&address="+address;
               let resp = await fetchApi(url);
               if(resp != "null"){
                 return resp[0].myWager;
@@ -136,7 +146,7 @@ var prakash ={
 
             },
             fromChecksum:async function(checkSumAddress){
-              let url = "../php/api/getUserData.php?submitType=getUser&checkSumAddress="+checkSumAddress;
+              let url = host + "api/getUserData.php?submitType=getUser&checkSumAddress="+checkSumAddress;
               let resp = await fetchApi(url);
               if(resp != "null"){
                 return resp[0].myWager;
@@ -145,7 +155,7 @@ var prakash ={
               }
             },
             fromPlayerIndex:async function(playerIndex){
-              let url = "../php/api/getUserData.php?submitType=getUser&playerIndex="+playerIndex;
+              let url = host + "api/getUserData.php?submitType=getUser&playerIndex="+playerIndex;
               let resp = await fetchApi(url);
               if(resp != "null"){
                 return resp[0].myWager;
@@ -155,7 +165,7 @@ var prakash ={
             }
           },
             myWon:{fromBase58:async function(address){
-              let url = "../php/api/getUserData.php?submitType=getUser&address="+address;
+              let url = host + "api/getUserData.php?submitType=getUser&address="+address;
               let resp = await fetchApi(url);
               if(resp != "null"){
                 return resp[0].myWon;
@@ -165,7 +175,7 @@ var prakash ={
 
             },
             fromChecksum:async function(checkSumAddress){
-              let url = "../php/api/getUserData.php?submitType=getUser&checkSumAddress="+checkSumAddress;
+              let url = host + "api/getUserData.php?submitType=getUser&checkSumAddress="+checkSumAddress;
               let resp = await fetchApi(url);
               if(resp != "null"){
                 return resp[0].myWon;
@@ -174,7 +184,7 @@ var prakash ={
               }
             },
             fromPlayerIndex:async function(playerIndex){
-              let url = "../php/api/getUserData.php?submitType=getUser&playerIndex="+playerIndex;
+              let url = host + "api/getUserData.php?submitType=getUser&playerIndex="+playerIndex;
               let resp = await fetchApi(url);
               if(resp != "null"){
                 return resp[0].myWon;
@@ -184,7 +194,7 @@ var prakash ={
             }
           },
             myLost:{fromBase58:async function(address){
-              let url = "../php/api/getUserData.php?submitType=getUser&address="+address;
+              let url = host + "api/getUserData.php?submitType=getUser&address="+address;
               let resp = await fetchApi(url);
               if(resp != "null"){
                 return resp[0].myLost;
@@ -194,7 +204,7 @@ var prakash ={
 
             },
             fromChecksum:async function(checkSumAddress){
-              let url = "../php/api/getUserData.php?submitType=getUser&checkSumAddress="+checkSumAddress;
+              let url = host + "api/getUserData.php?submitType=getUser&checkSumAddress="+checkSumAddress;
               let resp = await fetchApi(url);
               if(resp != "null"){
                 return resp[0].myLost;
@@ -203,7 +213,7 @@ var prakash ={
               }
             },
             fromPlayerIndex:async function(playerIndex){
-              let url = "../php/api/getUserData.php?submitType=getUser&playerIndex="+playerIndex;
+              let url = host + "api/getUserData.php?submitType=getUser&playerIndex="+playerIndex;
               let resp = await fetchApi(url);
               if(resp != "null"){
                 return resp[0].myLost;
@@ -213,37 +223,37 @@ var prakash ={
             }
           },
             myDetail:{fromBase58:async function(address){
-              let url = "../php/api/getUserData.php?submitType=getUser&address="+address;
+              let url = host + "api/getUserData.php?submitType=getUser&address="+address;
               return await fetchApi(url);
             },
             fromChecksum:async function(checkSumAddress){
-              let url = "../php/api/getUserData.php?submitType=getUser&checkSumAddress="+checkSumAddress;
+              let url = host + "api/getUserData.php?submitType=getUser&checkSumAddress="+checkSumAddress;
               return await fetchApi(url);
             },
             fromPlayerIndex:async function(playerIndex){
-              let url = "../php/api/getUserData.php?submitType=getUser&playerIndex="+playerIndex;
+              let url = host + "api/getUserData.php?submitType=getUser&playerIndex="+playerIndex;
               return await fetchApi(url);
             }
           } },
   allUser:{ blankName:async function (){
-            let url = "../php/api/blankName.php";
+            let url = host + "api/blankName.php";
             return await fetchApi(url);
               },
           blankCheckSum:async function(){
-            let url = "../php/api/blankChecksum.php";
+            let url = host + "api/blankChecksum.php";
             return await fetchApi(url);
           },
           topPlayer:async function(){
-            let url = "../php/api/topWager.php";
+            let url = host + "api/topWager.php";
             return await fetchApi(url);
           },
           queryUser:async function(){
-            let url = "../php/main.php";
+            let url = host + "main.php";
             return await fetchApi(url);
           }
         },
   totalUserCount:async function(){
-    let url = "../php/api/playerCount.php";
+    let url = host + "api/playerCount.php";
     return await fetchApi(url);
   },
 
@@ -251,7 +261,7 @@ var prakash ={
   updateDB:{
     myName:{
       fromChecksum:function(checkSumAddress,myname){ $.ajax({
-            url  : "../php/api/postapi/updatename.php",
+            url  : host + "api/postapi/updatename.php",
             type : "POST",
             data :{
               name: myname,
@@ -270,7 +280,7 @@ var prakash ={
               });
           },
     fromBase58:function(_addr,myname){ $.ajax({
-          url  : "../php/api/postapi/updatename.php",
+          url  : host + "api/postapi/updatename.php",
           type : "POST",
           data :{
             username: myname,
@@ -291,7 +301,7 @@ var prakash ={
         },
   myWager:{
     fromChecksum:function(checkSumAddress,myWager){ $.ajax({
-          url  : "../php/api/postapi/updateWager.php",
+          url  : host + "api/postapi/updateWager.php",
           type : "POST",
           data :{
             myWager: myWager,
@@ -310,7 +320,7 @@ var prakash ={
             });
         },
   fromBase58:function(_addr,myWager){ $.ajax({
-        url  : "../php/api/postapi/updateWager.php",
+        url  : host + "api/postapi/updateWager.php",
         type : "POST",
         data :{
           myWager: myWager,
@@ -331,7 +341,7 @@ var prakash ={
   myWon:function(){},
   myLost:function(){},
   myChecksum:function(_addr,myWager){ $.ajax({
-        url  : "../php/api/postapi/updateChecksumAddr.php",
+        url  : host + "api/postapi/updateChecksumAddr.php",
         type : "POST",
         data :{
           myWager: myWager,
@@ -351,7 +361,7 @@ var prakash ={
             },
   myBetRecord:async function(checkSumAddress,betAmount,paidVal){
                $.ajax({
-                url  : "../php/api/postapi/insertBetResult.php",
+                url  : host + "api/postapi/insertBetResult.php",
                 type : "POST",
                 data : {
                         betAmount:betAmount,
@@ -374,7 +384,7 @@ var prakash ={
           },
   newUser:async function(index,_addr,checkSumAddress,myname){
                $.ajax({
-                url  : "../php/api/postapi/insertUser.php",
+                url  : host + "api/postapi/insertUser.php",
                 type : "POST",
                 data : {
                         index:index,
@@ -409,7 +419,7 @@ var prakash ={
                   build.active = active;
                 }
                    return $.ajax({
-                    url  : "../php/api/postapi/insertVisitor.php",
+                    url  : host + "api/postapi/insertVisitor.php",
                     type : "POST",
                     data : build,
                   success:function(data)
@@ -433,7 +443,7 @@ var prakash ={
                 }
                 let x = null;
                     return $.ajax({
-                    url  : "../php/api/postapi/activateVisitor.php",
+                    url  : host + "api/postapi/activateVisitor.php",
                     type : "POST",
                     data : build,
                   success:function(data)
@@ -468,6 +478,15 @@ var prakash ={
 
               }
 }
+let usersDatabase = [];
+(async function (){
+  try {
+     usersDatabase = await prakash.allUser.queryUser();
+     // console.log(usersDatabase);
+  } catch (e) {
+    console.log('could not get usersDatabase');
+  }
+})();
 
 async function test(){
 

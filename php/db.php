@@ -1,5 +1,5 @@
 <?php
-//$con = mysqli_connect('localhost', 'root', '', 'userDB');
+// $con = mysqli_connect('localhost', 'root', '', 'userDB');
 
 
 $con = mysqli_connect('localhost', 'u969387606_tronshine', 'tronshine@dep', 'u969387606_userDB');

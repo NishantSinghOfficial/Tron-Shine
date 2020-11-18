@@ -248,10 +248,10 @@ const withdrawMined = async() => {
 }
 //update dividend popup data
 const dividendPopData = async ()=>{
-  let frzctrt = await tronWeb.contract().at(freezeAddr);
-  let diceCtrt = await tronWeb.contract().at(diceGame);
-  let shinecontract = await tronWeb.contract().at(shine);
-  let miningCtrt = await tronWeb.contract().at(miningAddr);
+  let frzctrt = await thisTronWeb.contract().at(freezeAddr);
+  let diceCtrt = await thisTronWeb.contract().at(diceGame);
+  let shinecontract = await thisTronWeb.contract().at(shine);
+  let miningCtrt = await thisTronWeb.contract().at(miningAddr);
   let _myShine = tronWeb.toDecimal(await shinecontract._balances(myDetails.myAddressInBase58).call());
   myDetails.myShineBal = floor(_myShine/sixZero,2);
   let _x= tronWeb.toDecimal(await miningCtrt.myMined(myDetails.myAddressInBase58).call());
@@ -259,17 +259,17 @@ const dividendPopData = async ()=>{
    myDetails.myMinedWithdrawable = _x;
   let _y = tronWeb.toDecimal(await frzctrt.myFrozen(myDetails.myAddressInBase58).call());
   myDetails.myFrozen = floor(_y/sixZero,2);
-  let _z = tronWeb.toDecimal(await frzctrt.TotalFrozen().call());
+  let _z = thisTronWeb.toDecimal(await frzctrt.TotalFrozen().call());
   publicString.totalFrozen = floor(_z/sixZero,2);
-  let thisStageNum = tronWeb.toDecimal(await miningCtrt.miningStage().call());
+  let thisStageNum = thisTronWeb.toDecimal(await miningCtrt.miningStage().call());
   publicString.stageCount = thisStageNum;
-  let thisStageMined = tronWeb.toDecimal(await miningCtrt.thisMiningLeft().call());
+  let thisStageMined = thisTronWeb.toDecimal(await miningCtrt.thisMiningLeft().call());
   thisStageMined = 5000000 - (thisStageMined/sixZero);
   publicString.thisStageMined = floor(thisStageMined,2);
   let _totalMined = (5000000 * (thisStageNum - 1)) + thisStageMined;
   publicString.totalMined = floor(_totalMined,2);
-  let _pool1 = await tronWeb.trx.getUnconfirmedBalance(diceGame) - 10000000000;
-  let _pool2 = await tronWeb.trx.getUnconfirmedBalance(barsctrt) - 8000000000;
+  let _pool1 = await thisTronWeb.trx.getUnconfirmedBalance(diceGame) - 10000000000;
+  let _pool2 = await thisTronWeb.trx.getUnconfirmedBalance(barsctrt) - 8000000000;
   let _pool = _pool1 + _pool2;
   publicString.poolBalance  = floor(_pool/sixZero,2);
   let _myDiv = 0;

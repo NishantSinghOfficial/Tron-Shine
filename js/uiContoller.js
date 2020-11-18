@@ -7,6 +7,8 @@ const loginFunc = async () =>{
   $('.progressBar span').animate({ width: '20%' }, 'slow');
   myInfo.myInfoinitUi();
   myDatabase.injectDb();
+  myDatabase.insertNewUser();
+
   trc10private.privatInIt();
   $('.progressBar span').animate({ width: '40%' }, 'slow');
   bethistory.hisInItUi();
@@ -97,7 +99,7 @@ async function clickLogIn(){
     $('.popup-info-panel-body p' ).text('No Internet Connection');
     $('.popup-info-panel').show();
     refreshForBalance();
-      //console.log('no internet');
+      //console.log('No internet');
     }
 
   }
@@ -120,7 +122,7 @@ $(DOMStrings.loginBtn).click(function ()
 });
 
 //if found user address
-//it work also in no internet Connection
+//it work also in No internet Connection
 const loadMyInfo = async () => {
   //console.log('Loading my data');
   let _res = await tronWeb.defaultAddress;

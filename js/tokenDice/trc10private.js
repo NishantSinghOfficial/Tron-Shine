@@ -1,4 +1,4 @@
-const listId = [1002000,1001909,1002413,1001092,1002748,  1002366,1002531,1000985,1002646,1002145,1001584];
+const listId = [1002000,1001909,1002413,1001092,1002748,  1002366,1002531,1000985,1002646,1002145,1001584,1003202];
 
 var PlayabletokenId = {
 
@@ -13,6 +13,8 @@ var PlayabletokenId = {
   1002646:{name:'TALC',wager:'0',precision:'6',min:'10',poolBal:'0',myValue:'0',poolLmtToken:'10000'},
   1001584:{name:'SUDWA',wager:'0',precision:'0',min:'1200',poolBal:'0',myValue:'0',poolLmtToken:'12000000'},
    1002748:{name:'BONUS',wager:'0',precision:'6',min:'40',poolBal:'0',myValue:'0',poolLmtToken:'40000'},
+    1003341:{name:'HITHOT',wager:'0',precision:'6',min:'3',poolBal:'0',myValue:'0',poolLmtToken:'30000'},
+
    //1002748
 
 //   1000001:{name:'SEED',wager:'0',precision:'0',min:'8',poolBal:'0',myValue:'0',poolLmtToken:'0'},
@@ -21,6 +23,8 @@ var PlayabletokenId = {
   1002413:{name:'BTZC',wager:'0',precision:'6',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'0'},
 //   1002670:{name:'SCC',wager:'0',precision:'6',min:'7',poolBal:'0',myValue:'0',poolLmtToken:'0'},
   1001092:{name:'SCT',wager:'0',precision:'0',min:'1400',poolBal:'0',myValue:'0',poolLmtToken:'0'},
+  1003202:{name:'TFT',wager:'0',precision:'4',min:'10',poolBal:'0',myValue:'0',poolLmtToken:'10000'}
+
 //   1001313:{name:'CGIZA',wager:'0',precision:'0',min:'9',poolBal:'0',myValue:'0',poolLmtToken:'0'},
 //   1001351:{name:'CDF',wager:'0',precision:'0',min:'250',poolBal:'0',myValue:'0',poolLmtToken:'0'},
 //   1001316:{name:'TSY',wager:'0',precision:'0',min:'200',poolBal:'0',myValue:'0',poolLmtToken:'0'},
@@ -93,7 +97,7 @@ var trc10private = (function(){
   }
   ///pool token bal
   const getPoolToken = async () => {
-   await tronWeb.trx.getAccount(trcGameAddress).then(async result =>{
+   await thisTronWeb.trx.getAccount(trcGameAddress).then(async result =>{
        //console.log(result);
 
          //console.log(result);
@@ -116,7 +120,7 @@ var trc10private = (function(){
   ///my token bal
   const geyMyToken = async () =>{
 
-    await tronWeb.trx.getAccount(myDetails.myAddressInBase58).then(async result =>{
+    await thisTronWeb.trx.getAccount(myDetails.myAddressInBase58).then(async result =>{
       if(result.account_name){
         myDetails.myWalletName = tronWeb.toAscii(result.account_name);
       }
@@ -155,20 +159,10 @@ var trc10private = (function(){
   }
 
   const disTotalWager = async () =>{
-    let diceCtrt = await tronWeb.contract().at(trcGameAddress);
+    let diceCtrt = await thisTronWeb.contract().at(trcGameAddress);
     var allToken = '';
     var tokenChanger = '';
-    // let _all =await listId.map(async (data, i) =>{
-    //   let _w = await diceCtrt.played(data).call();
-    //   _w = tronWeb.toDecimal(_w);
-    //
-    //   return '<div class="token-in-list" id="'+data+
-    //                       '"><div class="tokenName">' + PlayabletokenId[data].name +
-    //                       '</div><div class="tokenWager">' + _w +
-    //                       '</div><div class="playButton"><i class="far fa-check-circle"></i></div></div>';
-    // })
-    // console.log(_all);
-    // $(DOMStrings.tokeninlistbody).html(_all);
+
     executeTrc(0);
 async function executeTrc(_x){
   if (Object.keys(PlayabletokenId).length> _x) {
@@ -213,14 +207,7 @@ async function executeTrc(_x){
 
 
   const privatInIt = async () =>{
-
-      //await getTotalPlayed();
       await getPoolToken();
-      //await geyMyToken();
-
-      //rRefresh();
-
-
   }
   return{
     "privatInIt":privatInIt

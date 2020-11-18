@@ -1,6 +1,8 @@
 
 var _luckNum = 100;
 var payOnwinToken = 0;
+var pending = false;
+
 var trc10 = (function(){
   var setAuto = null;
 	const sixZero = 1000000;
@@ -42,8 +44,7 @@ var trc10 = (function(){
 			});
 
       $(DOMStrings.RollBtn).text('Rolling');
-      let _betTime = Date.now();
-			rollingEffect(_x,_y,_z,_id,_result,_betTime);
+			rollingEffect(_x,_y,_z,_id,_result);
 
 			//console.log(_luckNum);
 		}
@@ -100,8 +101,7 @@ var trc10 = (function(){
     				//shouldPollResponse: true
 					});
           $(DOMStrings.RollBtn).text('Rolling');
-          let _betTime = Date.now();
-    			rollingEffect(_x,_y,_z,_id,_result,_betTime);
+    			rollingEffect(_x,_y,_z,_id,_result);
 
 				}
 
@@ -134,8 +134,12 @@ var trc10 = (function(){
 	/////////////////////////////////////
 
 
-	const rollingEffect = async(_dirName,_predic,betAmt,_id,txid,betTime) =>
+	const rollingEffect = async(_dirName,_predic,betAmt,_id,txid) =>
 	{
+    let _betTime = Date.now();
+    let tries = 0;
+    pending = true;
+
     $(DOMStrings.luckyDis).css({
 			'color':'#c0ff07',
 			'text-shadow': '0 0 2px #001604'
@@ -147,34 +151,27 @@ var trc10 = (function(){
       name = 'Roll Under ' +_predic;
     }
 		var i = 0;
-		setrollanim = setInterval(function ()
-		{
+		setrollanim = setInterval(function (){
 			$(DOMStrings.luckyDis).text(i);
       i++;
       //////////////////////
-			if ( _luckNum != 100)
-			{
+			if ( _luckNum != 100){
         $(DOMStrings.luckyDis).text(_luckNum);
-        console.log(_luckNum);
 				clearInterval(setrollanim);
         $(DOMStrings.RollBtn).text(name);
         $(DOMStrings.RollBtn).attr("disabled", false);
 
-
+        pending = false;
 				_luckNum = 100;
         let divider = 10 ** (PlayabletokenId[_id].precision);
-				if (payOnwinToken > 0)
-				{
-
+				if(!!payOnwinToken){
 					let winsound = new Audio("../sound/succeeding.wav");
 					winsound.play();
           $(DOMStrings.resultPop).html(winMsg);
 					console.log('win');
-
           payOnwinToken = 0;
           canPlace = 0;
-				}
-				else{
+				}else{
 					let loosesound = new Audio("../sound/failure.wav");
 					loosesound.play();
           $(DOMStrings.resultPop).html(loseMsg);
@@ -187,29 +184,25 @@ var trc10 = (function(){
 				}
 
 			}
-      let _t = Date.now() - 10000;
-      if(betTime < _t){
+      if (i == 100){
+       i = 0;
+     }
+      if( Date.now() - _betTime > 5000 && pending){
+        _betTime = Date.now();
         findotherWayResult(txid);
-        console.log('other way');
       }
       //////////////////////////
-			 if (i == 100)
-			{
-				i = 0;
-			}
 
-		}, 40);
+
+		}, 50);
 	}
 
   const findotherWayResult = async (txnId) =>{
     await tronWeb.getEventByTransactionID(txnId).then(res =>{
-      if (res) {
+      if (res.length && pending) {
         _luckNum = res[0].result.lucky_number;
-        payOnwinTrx = res[0].result.payOut;
+        payOnwinToken = res[0].result.payOut;
       }
-
-       //bethistory.restartWatch();
-
       console.log('other way');
     });
 

@@ -24,260 +24,151 @@ var bethistory = (function(){
   }
   ///////////////////////////////////////////////////
   async function allHistory() {
-    let allTable = "";
-    let resultCount = 0;
-    await tronWeb.getEventResult(trcGameAddress, {
-      eventName:'trc10BetEvent',
-      size: 50,
-      //onlyConfirmed: true
-      //page: 2
-    }).then(result => {
-      //console.log(result);
-      result.forEach(async(event) => {
-          let addr = event.result.addr;
-          addr = checksumHex(addr);
-          addr = tronWeb.address.fromHex(addr);
-          let hash = event.transaction;
-          let divider = 10 ** (PlayabletokenId[event.result.tokenId].precision);
+    try {
+      let history = await thisTronWeb.getEventResult(trcGameAddress, {
+        eventName:'trc10BetEvent',
+        size: 50,
+      })
+      history = history.map((item,i)=>{
+        let txnHash = item.transaction;
+        let link = `https://tronscan.org/#/transaction/${txnHash}`
+        let{ addr,tokenId,payOut,betAmount,prediction,lucky_number,rollType} = item.result;
+        let record = usersDatabase.filter(i=>i.checkSumAddress === addr)
+        addr = checksumHex(addr);
+        addr = thisTronWeb.address.fromHex(addr);
+        let _nam = record.length && record[0].name?record[0].name:shortAddress(addr);
+        let divider = 10 ** (PlayabletokenId[tokenId].precision);
+        let paytrx = Math.floor(payOut / 1e4)/100;
+        let tokenNam = PlayabletokenId[tokenId].name;
+        let _betVal = (betAmount) / divider;
+        let payAfterWin = payOut > 0?floor((payOut)/divider,2):0;
+        let classClrwin = payOut>0?'greenCell':'redCell';
+        let betType = rollType == 0?'Under':'Over';
+        return(
+          `<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/${txnHash}">${_nam}
+            </a></td>
+            <td>${betType} ${prediction}</td>
+            <td class=${classClrwin}>${lucky_number}</td>
+            <td>${_betVal} ${tokenNam}</td>
+            <td class=${classClrwin}>${payAfterWin} ${tokenNam}</td>
+            </tr>`
+        )
 
-          //let paytrx = Math.floor(event.result.payOut / 1e4)/100;
-          let classClrwin = '';
-          let tokenNam = PlayabletokenId[event.result.tokenId].name;
-          let _betVal = (event.result.betAmount) / divider;
-          let payAfterWin = 0;
-          if (event.result.payOut != 0) {
-            classClrwin = 'greenCell';
+      }).toString().replace(/,/g, '');
+      document.querySelector(DOMStrings.allbetTableBody).innerHTML = history;
 
-            payAfterWin = floor((event.result.payOut)/divider,2)+' '+tokenNam;
-          }else {
-            classClrwin ='redCell';
-          }
-          let _nam = shortAddress(addr);
-          await tronWeb.trx.getAccount(addr).then(async result =>{
-
-            if(result.account_name){
-              _nam =  tronWeb.toAscii(result.account_name);
-
-            }
-            //console.log(_nam);
-            });
-
-          if (event.result.rollType == 0) {
-            //Win Roll Under
-            allTable += '<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/'+hash+'">' + _nam+
-              '</a></td><td>Under ' + event.result.prediction +
-              '</td><td class="red_clr">' + event.result.lucky_number +
-              '</td><td>' + _betVal+' ' +tokenNam+
-              '</td><td class="' + classClrwin + '">' + payAfterWin+
-              '</td></tr>';
-          }else{
-            allTable += '<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/'+hash+'">' + _nam +
-              '</a></td><td>OVER ' + event.result.prediction +
-              '</td><td class="red_clr">' + event.result.lucky_number +
-              '</td><td>' + _betVal+' ' +tokenNam+
-              '</td><td class="' + classClrwin + '">' + payAfterWin+
-              '</td></tr>';
-          }
-          document.querySelector(DOMStrings.allbetTableBody).innerHTML = allTable;
-
-      });
-
-    })
+    } catch (e) {
+      console.log(e);
+      console.log('failed to render history');
+    }
   }
 
-
-  //////
-  const findAlltrcbetdata = async() =>{
-    let allTable = "";
-    await tronWeb.getEventResult(trcGameAddress, {
-      eventName:'trc10BetEvent',
-      size: 50
-      //onlyConfirmed: true
-      //page: 2
-    }).then(async data => {
-      execute(0);
-      async function execute(_x){
-        if(data.length > _x){
-          let event = data[_x];
-          let addr = event.result.addr;
-          addr = checksumHex(addr);
-          addr = tronWeb.address.fromHex(addr);
-          let hash = event.transaction;
-          let divider = 10 ** (PlayabletokenId[event.result.tokenId].precision);
-
-          //let paytrx = Math.floor(event.result.payOut / 1e4)/100;
-          let classClrwin = '';
-          let tokenNam = PlayabletokenId[event.result.tokenId].name;
-          let _betVal = (event.result.betAmount) / divider;
-          let payAfterWin = 0;
-          if (event.result.payOut != 0) {
-            classClrwin = 'greenCell';
-
-            payAfterWin = floor((event.result.payOut)/divider,2)+' '+tokenNam;
-          }else {
-            classClrwin ='redCell';
-          }
-          let _nam = shortAddress(addr);
-          await tronWeb.trx.getAccount(addr).then(async result =>{
-
-            if(result.account_name){
-              _nam =  tronWeb.toAscii(result.account_name);
-
-            }
-            //console.log(_nam);
-
-
-          if (event.result.rollType == 0) {
-            //Win Roll Under
-            allTable += '<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/'+hash+'">' + _nam+
-              '</a></td><td>Under ' + event.result.prediction +
-              '</td><td class="red_clr">' + event.result.lucky_number +
-              '</td><td>' + _betVal+' ' +tokenNam+
-              '</td><td class="' + classClrwin + '">' + payAfterWin+
-              '</td></tr>';
-          }else{
-            allTable += '<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/'+hash+'">' + _nam +
-              '</a></td><td>OVER ' + event.result.prediction +
-              '</td><td class="red_clr">' + event.result.lucky_number +
-              '</td><td>' + _betVal+' ' +tokenNam+
-              '</td><td class="' + classClrwin + '">' + payAfterWin+
-              '</td></tr>';
-          }
-          });
-          _x += 1;
-          execute(_x);
-        }else if (data.length == _x) {
-          document.querySelector(DOMStrings.allbetTableBody).innerHTML = allTable;
-        }
-      }
-    });
-  }
   ///////////////////////////////////////////////////
   async function myHistory() {
-    let allTable = "";
-    let resultCount = 0;
+
     let myAddrChck = myDetails.myAddressInCheckSum;
-    let addr = myDetails.myAddressInBase58;
-    let name = shortAddress(addr);
-    if(myDetails.myWalletName != ''){
-      name = myDetails.myWalletName
+    if(!myAddrChck){
+      return null;
     }
-    await tronWeb.getEventResult(trcGameAddress, {
-      eventName:'trc10BetEvent',
-      size: 50,
-      //onlyConfirmed: true,
-      filters: {
-        "addr": myAddrChck
-      }
+    let address = myDetails.myAddressInBase58;
+    let name = !!myDetails.myWalletName?myDetails.myWalletName:shortAddress(address);
 
-      //page: 2
-    }).then(result => {
-      //console.log(result);
-      result.forEach(async(event) => {
-          let tokenNam = PlayabletokenId[event.result.tokenId].name;
-          let hash = event.transaction;
-          let divider = 10 ** (PlayabletokenId[event.result.tokenId].precision);
-          //let paytrx = Math.floor(event.result.payOut / 1e4)/100;
-          let classClrwin = '';
+    try {
+      let record = usersDatabase.filter(i=>i.checkSumAddress === myAddrChck)
+      let name = !!myDetails.myWalletName?myDetails.myWalletName:record.length && record[0].name?record[0].name:shortAddress(addr);
 
-          let payAfterWin = 0;
-          if (event.result.payOut != 0) {
-            classClrwin = 'greenCell';
-
-            payAfterWin = floor((event.result.payOut)/divider,2)+' '+tokenNam;
-          }else {
-            classClrwin ='redCell';
+      let history = await thisTronWeb.getEventResult(trcGameAddress, {
+        eventName:'trc10BetEvent',
+        size: 50,
+        filters: {
+            "addr": myAddrChck
           }
+      })
+      history = history.map((item,i)=>{
+        let txnHash = item.transaction;
+        let link = `https://tronscan.org/#/transaction/${txnHash}`
+        let{ addr,tokenId,payOut,betAmount,prediction,lucky_number,rollType} = item.result;
+        if(addr !== address){
+          return null;
+        }
+        // addr = checksumHex(addr);
+        // addr = tronWeb.address.fromHex(addr);
+        // let _nam = shortAddress(addr);
+        let divider = 10 ** (PlayabletokenId[tokenId].precision);
+        let paytrx = Math.floor(payOut / 1e4)/100;
+        let tokenNam = PlayabletokenId[tokenId].name;
+        let _betVal = (betAmount) / divider;
+        let payAfterWin = payOut > 0?floor((payOut)/divider,2):0;
+        let classClrwin = payOut>0?'greenCell':'redCell';
+        let betType = rollType == 0?'Under':'Over';
+        return(
+          `<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/${txnHash}">${name}
+            </a></td>
+            <td>${betType} ${prediction}</td>
+            <td class=${classClrwin}>${lucky_number}</td>
+            <td>${_betVal} ${tokenNam}</td>
+            <td class=${classClrwin}>${payAfterWin} ${tokenNam}</td>
+            </tr>`
+        )
 
-          if (event.result.rollType == 0) {
-            //Win Roll Under
-            allTable += '<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/'+hash+'">' + name +
-              '</a></td><td>Under ' + event.result.prediction +
-              '</td><td class="red_clr">' + event.result.lucky_number +
-              '</td><td>' + (event.result.betAmount) / divider+' ' +tokenNam+
-              '</td><td class="' + classClrwin + '">' + payAfterWin +
-              '</td></tr>';
-          }else{
-            allTable += '<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/'+hash+'">' + name +
-              '</a></td><td>OVER ' + event.result.prediction +
-              '</td><td class="red_clr">' + event.result.lucky_number +
-              '</td><td>' + (event.result.betAmount) / divider+' ' +tokenNam+
-              '</td><td class="' + classClrwin + '">' + payAfterWin +
-              '</td></tr>';
-          }
-          document.querySelector(DOMStrings.mybetTableBody).innerHTML = allTable;
+      }).toString().replace(/,/g, '');
+      document.querySelector(DOMStrings.mybetTableBody).innerHTML = history;
 
-      });
-
-    })
+    } catch (e) {
+      console.log(e);
+      console.log('failed to render my history');
+    }
   }
   //////////////////////////////
-  var hash = '';
   async function watchNewtrcBet() {
-		let newBet = '';
-    let myAddrChck = myDetails.myAddressInCheckSum;
-    let myaddr = myDetails.myAddressInBase58;
-		let contract = await tronWeb.contract().at(trcGameAddress);
-		let x = await contract.trc10BetEvent().watch(async (err, res) => {
-      if (err) return console.error('Error with "method" event:', err)
-			if (res && res.transaction != hash){
-        hash = res.transaction;
-        //console.info(res.transaction);
-        //console.log(res);
-        let addr = res.result.addr;
-        addr = checksumHex(addr);
-        addr = tronWeb.address.fromHex(addr);
-        let _nam = shortAddress(addr);
-        await tronWeb.trx.getAccount(addr).then(async result =>{
+    let hash = '';
 
-          if(result.account_name){
-            _nam =  tronWeb.toAscii(result.account_name);
-
-          }
-        });
-
-        let tokenNam = PlayabletokenId[res.result.tokenId].name;
-        let divider = 10 ** (PlayabletokenId[res.result.tokenId].precision);
-				//console.log(res);
-        let payAfterWin = 0;
-        let classClrwin = '';
-        if (res.result.payOut != 0) {
-          classClrwin = 'greenCell';
-
-          payAfterWin = floor((res.result.payOut)/divider,2)+' '+tokenNam;
-        }else {
-          classClrwin ='redCell';
+    try {
+      let contract = await thisTronWeb.contract().at(trcGameAddress);
+  		await contract.trc10BetEvent().watch(async (err, item) =>{
+      if (err) return console.error('Error with "method" event:', err);
+      if (item && item.transaction == hash) {
+        return console.log('duplicate hash');;
+      }
+      hash = item.transaction;
+      let link = `https://tronscan.org/#/transaction/${hash}`
+      let{ addr,tokenId,payOut,betAmount,prediction,lucky_number,rollType} = item.result;
+      let record = usersDatabase.filter(i=>i.checkSumAddress === item.result[0])
+      // addr = checksumHex(addr);
+      addr = thisTronWeb.address.fromHex(addr);
+      let _nam = record.length && record[0].name?record[0].name:shortAddress(addr);
+      let divider = 10 ** (PlayabletokenId[tokenId].precision);
+      let paytrx = Math.floor(payOut / 1e4)/100;
+      let tokenNam = PlayabletokenId[tokenId].name;
+      let _betVal = (betAmount) / divider;
+      let payAfterWin = payOut > 0?floor((payOut)/divider,2):0;
+      let classClrwin = payOut>0?'greenCell':'redCell';
+      let betType = rollType == 0?'Under':'Over';
+      let newBet = `<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/${hash}">${_nam}
+          </a></td>
+          <td>${betType} ${prediction}</td>
+          <td class=${classClrwin}>${lucky_number}</td>
+          <td>${_betVal} ${tokenNam}</td>
+          <td class=${classClrwin}>${payAfterWin} ${tokenNam}</td>
+          </tr>`
+      $('tbody.allBetsHistory').prepend(newBet);
+      $('tbody.allBetsHistory ').find('tr:nth-of-type(51)').remove();
+      if(addr == myDetails.myAddressInBase58 ){
+        if (pending) {
+          _luckNum = lucky_number;
+          payOnwinToken = payOut;
+          
+          console.log('watch');
         }
 
-        if (res.result.rollType == 0) {
-          //Win Roll Under
-          newBet += '<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/'+hash+'">' + _nam +
-            '</a></td><td>Under ' + res.result.prediction +
-            '</td><td class="red_clr">' + res.result.lucky_number +
-            '</td><td>' + (res.result.betAmount) / divider+' ' +tokenNam+
-            '</td><td class="' + classClrwin + '">' + payAfterWin +
-            '</td></tr>';
-        }else{
-          newBet += '<tr><td class="chopCell"><a target="_blank" href="https://tronscan.org/#/transaction/'+hash+'">' + _nam +
-            '</a></td><td>OVER ' + res.result.prediction +
-            '</td><td class="red_clr">' + res.result.lucky_number +
-            '</td><td>' + (res.result.betAmount) / divider+' ' +tokenNam+
-            '</td><td class="' + classClrwin + '">' + payAfterWin +
-            '</td></tr>';
-        }
-				$('tbody.allBetsHistory').prepend(newBet);
-        $('tbody.allBetsHistory ').find('tr:nth-of-type(101)').remove();
-        if(addr == myaddr){
-          _luckNum = res.result.lucky_number;
-          payOnwinToken = res.result.payOut;
-          $('tbody.myBetsHistory').prepend(newBet);
-          $('tbody.myBetsHistory ').find('tr:nth-of-type(101)').remove();
-        }
+        $('tbody.myBetsHistory').prepend(newBet);
+        $('tbody.myBetsHistory ').find('tr:nth-of-type(51)').remove();
+      }
+      })
 
-				newBet = '';
-
-			}
-		});
+    } catch (e) {
+      console.error('failed to watch events');
+    }
 	}
   const restartWatch = async () =>{
     await watchNewtrcBet.stop();
@@ -292,15 +183,11 @@ var bethistory = (function(){
   //   },3000);
   // }
   const hisInItUi = async () => {
-
-      //findAlltrcbetdata();
       allHistory();
-      myHistory();
       watchNewtrcBet();
-
-
   }
   return {
+    'myHistory':myHistory,
     'hisInItUi':hisInItUi,
     'restartWatch':restartWatch
   }

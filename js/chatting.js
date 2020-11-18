@@ -1,4 +1,4 @@
-var chattingApp = (function () {	
+var chattingApp = (function () {
 const contractChatApi = 'https://api.trongrid.io/event/contract/'+chatContract+'?size=50&page=1';
 
 	//////////Checksum~to~hex~offline//////////////////
@@ -47,7 +47,7 @@ const contractChatApi = 'https://api.trongrid.io/event/contract/'+chatContract+'
 	const findAllMsg = async () =>{
 
 			let allmsg = "";
-			await tronWeb.getEventResult(chatContract, {
+			await thisTronWeb.getEventResult(chatContract, {
 				eventName:'msgData',
 				size: 100
 				//onlyConfirmed: true
@@ -60,9 +60,9 @@ const contractChatApi = 'https://api.trongrid.io/event/contract/'+chatContract+'
 						let event = data[_x];
 						let addr = event.result.from;
 						let base = checksumHex(addr);
-						base = await tronWeb.address.fromHex(base);
+						base = await thisTronWeb.address.fromHex(base);
 						let _nam = shortAddress(base);
-	          await tronWeb.trx.getAccount(base).then(async res =>{
+	          await thisTronWeb.trx.getAccount(base).then(async res =>{
 
 	            if(res.account_name){
 	              _nam =  tronWeb.toAscii(res.account_name);
@@ -103,15 +103,15 @@ const contractChatApi = 'https://api.trongrid.io/event/contract/'+chatContract+'
 
 	async function watchNewMsg() {
 		let newMsg = '';
-		let contract = await tronWeb.contract().at(chatContract);
+		let contract = await thisTronWeb.contract().at(chatContract);
 		let x = await contract.msgData().watch(async(err, res) => {
 
 			if (res) {
 				let addr = res.result.from;
 				let base = checksumHex(addr);
-				base = await tronWeb.address.fromHex(base);
+				base = await thisTronWeb.address.fromHex(base);
 				let _nam = shortAddress(base);
-				await tronWeb.trx.getAccount(base).then(async res =>{
+				await thisTronWeb.trx.getAccount(base).then(async res =>{
 
 					if(res.account_name){
 						_nam =  tronWeb.toAscii(res.account_name);
@@ -152,17 +152,8 @@ const contractChatApi = 'https://api.trongrid.io/event/contract/'+chatContract+'
 
 
 	async function chatinitUi() {
-		if(tronWeb.defaultAddress.base58){
-			await findAllMsg();
-			await watchNewMsg();
-		}else {
-			//console.log('stage2');
-			await findAllMsg();
-			await watchNewMsg();
-		}
-
-			//console.log('chat initialized');
-
+		await findAllMsg();
+		await watchNewMsg();
 	}
 	return {
 		"chatinitUi": chatinitUi,

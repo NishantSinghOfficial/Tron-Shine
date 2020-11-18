@@ -14,24 +14,24 @@ var myDatabase = (function(){
   const insertNewUser = async () =>{
     prakash.totalUserCount().then(async allCount =>{
       //console.error(allCount);
-      let mineCtrt = await tronWeb.contract().at(miningAddr);
+      let mineCtrt = await thisTronWeb.contract().at(miningAddr);
       let _z = await mineCtrt.totalPlayer().call();
-      _z = tronWeb.toDecimal(_z);
+      _z = thisTronWeb.toDecimal(_z);
       //console.error(_z);
       if(_z > allCount){
         getDataFromTronWeb();
         async function getDataFromTronWeb(){
-          let mineCtrt = await tronWeb.contract().at(miningAddr);
+          // let mineCtrt = await thisTronWeb.contract().at(miningAddr);
           let _checkSumAdd = await mineCtrt.playerIndex(allCount).call();
-          let _base58 = tronWeb.address.fromHex(_checkSumAdd);
+          let _base58 = thisTronWeb.address.fromHex(_checkSumAdd);
           _checkSumAdd = hexChecksum(_checkSumAdd);
           //console.log(_checkSumAdd);
           //console.log(_base58);
-          tronWeb.trx.getAccount(_base58).then(async userData =>{
+          thisTronWeb.trx.getAccount(_base58).then(async userData =>{
             //console.log(userData);
             let name = '';
             if (userData.account_name) {
-              name = tronWeb.toAscii(userData.account_name);
+              name = thisTronWeb.toAscii(userData.account_name);
               //console.log(name);
 
             }
@@ -83,11 +83,11 @@ var myDatabase = (function(){
       //console.log(res);
         getaddr();
         async function getaddr(){
-          let miningCtrt = await tronWeb.contract().at(miningAddr);
+          let miningCtrt = await thisTronWeb.contract().at(miningAddr);
           let _addr = res[_uint].address;
           //console.log(_addr);
           await miningCtrt.myWager(_addr).call().then(async wager =>{
-            wager = tronWeb.toDecimal(wager);
+            wager = thisTronWeb.toDecimal(wager);
             //console.log(wager);
             try {
               await prakash.updateDB.myWager.fromBase58(_addr,wager);
@@ -117,38 +117,33 @@ var myDatabase = (function(){
   /**********update my wager ***************/
   const updateMyName = async () =>{
     let _addr = myDetails.myAddressInBase58;
-    if(_addr == '')console.log('empty address');
+    let name = myDetails.myWalletName;
+    if(_addr.length !== 34) return console.log('empty address');
     //console.log(_addr);
     await prakash.isUser.fromBase58(_addr).then(async res=>{
-      console.log(res);
       if(res){
-        prakash.userData.myDetail.fromBase58(_addr).then(data=>{
+        prakash.userData.myDetail.fromBase58(_addr).then(async data=>{
           //console.log(data);
           //console.log(data[0].name);
           if (data[0].name == '') {
-            tronWeb.trx.getAccount(_addr).then(async userData =>{
-              //console.log(userData);
-              if (userData.account_name) {
-              let  name = tronWeb.toAscii(userData.account_name);
-                //console.log(name);
-                try {
-                  await prakash.updateDB.myName.fromBase58(_addr,name);
-                  //console.log('success');
-                } catch (e) {
-                  console.log(e);
-                }
-              }else if(tronWeb.defaultAddress.name){
-                let  name = tronWeb.defaultAddress.name;
-                  console.log(name);
-                  try {
-                    await prakash.updateDB.myName.fromBase58(_addr,name);
-                    //console.log('success');
-                  } catch (e) {
-                    console.log(e);
+            try {
+              await new Promise(async resolve=>{
+                if(!name){
+                  let userData = await tronWeb.trx.getAccount(_addr);
+                  if (userData.account_name){
+                  name = tronWeb.toAscii(userData.account_name);
+                  resolve()
                   }
+                }else {
+                  resolve()
+                }
+              })
+              if (name) {
+                await prakash.updateDB.myName.fromBase58(_addr,name);
               }
-            })
-
+            } catch (e) {
+              console.log('failed my name update');
+            }
           }else {
             /*set name in local object wallet name*/
 
@@ -169,6 +164,7 @@ var myDatabase = (function(){
 
         })
       }else {
+
       }
 
     })
@@ -183,6 +179,7 @@ var myDatabase = (function(){
     //console.log(ref +' :: this is referral code');
     let add = myDetails.myAddressInBase58;
     try {
+      if(add.length !== 34) return null;
       let _ref = await prakash.updateDB.newVisitor(add,ref);
       let link = `https://tronshine.org?ref=${_ref}`;
       $(DOMStrings.disLink).val(link);
@@ -219,11 +216,11 @@ var myDatabase = (function(){
 
   async function injectDb(){
     //console.error('injectDb');
-    insertNewUser();
     updateMyName();
     getReferralData();
   }
   return {
+    'insertNewUser':insertNewUser,
     'injectDb':injectDb
   }
 
