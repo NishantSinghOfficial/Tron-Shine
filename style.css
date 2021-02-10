@@ -29,6 +29,14 @@ h1 {
     text-align: center;
 }
 
+.center2 {
+    
+}
+
+.distance2 {
+  margin-left: 150px;
+}
+
 .distance {
   margin-left: 150px;
 }
@@ -53,4 +61,40 @@ h1 {
 
 .fa-twitter {
   color: #00acee;
+}
+
+@media only screen and (max-width : 480px) {
+  .distance {
+    display: inline-block;
+    margin-left: 50px;
+    
+  }
+  .fix {
+   margin-left: 0;
+   padding-right: 20%;
+  }
+  
+}
+
+@media only screen and (min-width: 480px) and (max-width : 768px) {
+  .distance {
+    display: inline-block;
+    margin-left: 50px;
+    
+  }
+  .fix {
+   margin-left: 0;
+   padding-right: 20%;
+  }
+  
+  @media only screen and (min-width: 1920 x 1080) {
+    .distance {
+      display: inline-block;
+      margin-left: 0px;
+      
+    }
+    .fix {
+     margin-left: 0;
+     padding-right: 0px;
+    }
 }
