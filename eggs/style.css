@@ -1,100 +1,48 @@
-Body {
-    background-color:  #ffcc33;
-}
-.cut {
 
-  width: 170px;
-  height: 170px;
-  border: 5px solid gold;
-  padding: 0px;
-  margin: 20px;
-  display: inline-block;
-  text-align: center;
-  background-color: #ffb347;
-
-}
-img {
-  width: 170px;
-  height: 170px;
-
-}
-
-h1 {
-    text-align: center;
-    padding:10px;
-
-}
-
-.center {
-    text-align: center;
-}
-
-.center2 {
-    
-}
-
-.distance2 {
-  margin-left: 150px;
-}
-
-.distance {
-  margin-left: 150px;
-}
-
-#distance {
-  margin-left: 10%;
+.main-num-box span{
   position: relative;
-  padding-right: 5%;
-
+  display:inline-block;
+  width: 50px;
+  height: 70px;
+  margin: 3px 4px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 10px #000000,0 0 0 2px #000;
+  vertical-align:middle;
+  -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+.main-num-box span:nth-of-type(16){
+  width: 72px;
+  height: 100px;
+  vertical-align:middle;
 }
 
-.fix {
-  position: relative;
-  margin-left: 50px;
 
+span#green-num{
+ background: var(--green-for-span);
+}
+span#red-num{
+ background: var(--red-for-span);
+}
+span#blue-num{
+  background: var(--blue-for-span);
+}
+span#grey-num{
+ background: var(--grey-for-span);
 }
 
-.fa-telegram {
 
-  color:#0088cc;
-}
 
-.fa-twitter {
-  color: #00acee;
-}
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px){
+  .main-num-box span{
+    width: 35px;
+    height: 49px;
 
-@media only screen and (max-width : 480px) {
-  .distance {
-    display: inline-block;
-    margin-left: 50px;
-    
   }
-  .fix {
-   margin-left: 0;
-   padding-right: 20%;
+  .main-num-box span:nth-of-type(16){
+    width: 50px;
+    height: 70px;
   }
-  
-}
 
-@media only screen and (min-width: 480px) and (max-width : 768px) {
-  .distance {
-    display: inline-block;
-    margin-left: 50px;
-    
-  }
-  .fix {
-   margin-left: 0;
-   padding-right: 20%;
-  }
-  
-  @media only screen and (min-width: 1920 x 1080) {
-    .distance {
-      display: inline-block;
-      margin-left: 0px;
-      
-    }
-    .fix {
-     margin-left: 0;
-     padding-right: 0px;
-    }
 }
