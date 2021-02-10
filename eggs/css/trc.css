@@ -1,0 +1,31 @@
+.middle-side{
+  height: calc(100vh - 50px);
+}
+.middle-top{
+  height: 50%;
+}
+.middle-bottom{
+  height: 50%;
+}
+@media only screen and (max-width : 480px) {
+
+  .boxForNum{
+    margin-top: 10px;
+  }
+  .middle-top{
+    height: calc(45% + 10px);
+  }
+  .middle-bottom{
+    height: calc(55% - 10px);
+  }
+  .sliderRangeInput{
+    top: calc(30% + 50px);
+  }
+
+}
+@media only screen and (max-width : 768px) and (min-width: 480px){
+
+  .boxForNum{
+    margin-top: 0;
+  }
+}

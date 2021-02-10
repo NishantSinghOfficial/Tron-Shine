@@ -1,0 +1,43 @@
+@font-face {
+  font-family: font1;
+  src: url('../fonts/4iCs6KVjbNBYlgoKfw72nU6AFw.woff2');
+}
+@font-face {
+  font-family: chatfont1;
+  src: url('../fonts/285B7A_0_0.woff');
+}
+
+@font-face {
+  font-family: chatfont2;
+  src: url('../fonts/285B7A_1_0.woff');
+}
+
+@font-face {
+  font-family: chatfont3;
+  src: url('../fonts/285B7A_2_0.woff');
+}
+
+@font-face {
+  font-family: chatfont4;
+  src: url('../fonts/285B7A_4_0.woff');
+}
+
+@font-face {
+  font-family: chatfont5;
+  src: url('../fonts/285B7A_5_0.woff');
+}
+
+
+@font-face {
+  font-family: cardname;
+  src: url('../fonts/RACE1-Brannt-Plus-NCV.ttf');
+}
+
+@font-face {
+  font-family: popfont1;
+  src: url('../fonts/Vera.ttf');
+}
+@font-face{
+    font-family: hemihead;
+    src: url('../fonts/hemi-head-it.ttf');
+}

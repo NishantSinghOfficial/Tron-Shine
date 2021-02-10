@@ -1,0 +1,19 @@
+.mulOnBet,.winChance{
+  margin-top: 10px;
+  display: block;
+  position: relative;
+  float: left;
+  width: 45%;
+  background: rgba(0, 0, 0, 0.5);
+
+}
+.myTrxBal{
+  width: 100%;
+}
+.middle-top{
+  padding-top: 55px;
+  height: 50%;
+}
+.middle-bottom{
+  height: 50%;
+}

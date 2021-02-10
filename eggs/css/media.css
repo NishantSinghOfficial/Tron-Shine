@@ -1,0 +1,137 @@
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .userBtn button{
+    font: 300 16px popfont1;
+    margin-right: 5px;
+
+  }
+  ul.barsIcon li{
+    margin: 10px 0;
+  }
+  .navigation img{
+    margin-right: 0;
+  }
+.middle-top{
+  height: calc(42% + 10px);
+}
+.middle-bottom{
+  height: calc(58% - 10px);
+}
+  .boxForNum{
+    top: 120px;
+    width: 80%;
+  }
+p.disNum{
+  font: 600 60px chatfont5;
+}
+p.disLuckyNum {
+  font: 600 60px chatfont5;
+}
+.sliderRangeInput{
+  top: calc(30% + 40px);
+}
+.myTrxBal,.MinedBal > p{
+font: 400 12px/14px chatfont4;
+}
+.lower-left label{
+  font-size: 12px;
+}
+.lower-left input{
+  font: 500 26px/30px chatfont5;
+}
+.lower-right{
+  margin-top: 0;
+  padding: 0;
+}
+.Rolling-btn{
+    width: 80%;
+  font: 500 14px/29px chatfont5;
+
+}
+ul.inBtnGrp li button{
+  font: 400 12px chatfont4 ;
+}
+.token-toggler{
+  top: 4px;
+}
+.token-name-active img{
+  height: 20px ;
+}
+.token-toggler-header{
+  padding: 0 !important;
+  margin: 0;
+}
+.token-toggler-footer,.token-in-list{
+  padding: 6px 0;
+  border-top: 3px groove #404040;
+}
+/************************************/
+a.trigABPop{
+
+  font: 300 12px popfont1;
+}
+ul.middle-side-list li{
+  font: 600 20px popfont1;
+}
+.profile-sm-box{
+  width: 70%;
+  margin: 10px 15%;
+}
+
+
+  }
+
+  @media only screen  and (min-width: 480px) and (max-width : 768px){
+    ul.inBtnGrp li button{
+      font: 400 14px chatfont4 ;
+      margin-bottom: 0;
+    }
+
+    .token-toggler{
+      top: 4px;
+    }
+    .token-name-active img{
+      height: 20px ;
+    }
+    .token-toggler-header{
+      padding: 0 !important;
+      margin: 0;
+    }
+    .token-toggler-footer,.token-in-list{
+      padding: 6px 0;
+      border-top: 3px groove #404040;
+    }
+
+    .myTrxBal,.MinedBal > p{
+    font: 400 12px/14px chatfont4;
+    }
+    .lower-left label{
+      font-size: 12px;
+    }
+    .lower-left input{
+      font: 500 26px/30px chatfont5;
+    }
+    .boxForNum{
+
+      width: 60%;
+    }
+    p.disNum{
+      font: 600 70px chatfont5;
+    }
+    p.disLuckyNum {
+      font: 600 70px chatfont5;
+    }
+  }
+
+  @media only screen and (orientation : landscape) and (max-height: 400px){
+    .middle-side{
+      height: auto;
+    }
+    .middle-top{
+      height: 300px !important;
+    }
+    .middle-bottom{
+      height: 300px !important;
+    }
+  }
