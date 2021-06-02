@@ -33,6 +33,7 @@ var bethistory = (function(){
         let txnHash = item.transaction;
         let link = `https://tronscan.org/#/transaction/${txnHash}`
         let{ addr,tokenId,payOut,betAmount,prediction,lucky_number,rollType} = item.result;
+        if(!PlayabletokenId[tokenId]) return null;
         let record = usersDatabase.filter(i=>i.checkSumAddress === addr)
         addr = checksumHex(addr);
         addr = thisTronWeb.address.fromHex(addr);

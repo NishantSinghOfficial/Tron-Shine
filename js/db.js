@@ -119,7 +119,7 @@ var myDatabase = (function(){
     let _addr = myDetails.myAddressInBase58;
     let name = myDetails.myWalletName;
     if(_addr.length !== 34) return console.log('empty address');
-    //console.log(_addr);
+    // console.log("addr. " + _addr);
     await prakash.isUser.fromBase58(_addr).then(async res=>{
       if(res){
         prakash.userData.myDetail.fromBase58(_addr).then(async data=>{
@@ -169,6 +169,7 @@ var myDatabase = (function(){
 
     })
     .catch(function(error){
+        // console.log('error checking addr');
       console.log(error);
     })
 

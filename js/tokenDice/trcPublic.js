@@ -165,6 +165,7 @@ const tokenPool = async () =>{
       //asset v1 api fetching in correct data
            //console.log(PlayabletokenId);
     })
+    // .catch(()=>consol.log('failed trc pool'))
 }
 
 

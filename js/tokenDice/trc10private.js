@@ -1,18 +1,18 @@
-const listId = [1002000,1001909,1002413,1001092,1002748,  1002366,1002531,1000985,1002646,1002145,1001584,1003202];
+const listId = [1002000,1001909,1002413,1001092,  1002366,1002531,1002646,1002145,1001584,1003202];
 
 var PlayabletokenId = {
 
   1001909:{name:'DEP',wager:'0',precision:'5',min:'1000',poolBal:'0',myValue:'0',poolLmtToken:'1000000'},//1001909
-  1002000:{name:'BTT',wager:'0',precision:'6',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'50000'},//1002000
+  1002000:{name:'BTT',wager:'0',precision:'6',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'0'},//1002000
   1002366:{name:'DTL',wager:'0',precision:'0',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'500000'},//1002366
   1002531:{name:'DTLS',wager:'0',precision:'5',min:'1000',poolBal:'0',myValue:'0',poolLmtToken:'1000000'},
   //1002095:{name:'FOP',wager:'0',precision:'0',min:'500',poolBal:'0',myValue:'0',poolLmtToken:'5000000'},//1002366
-  1000985:{name:'SANTA',wager:'0',precision:'0',min:'100000',poolBal:'0',myValue:'0',poolLmtToken:'200000000'},
+//   1000985:{name:'SANTA',wager:'0',precision:'0',min:'100000',poolBal:'0',myValue:'0',poolLmtToken:'200000000'},
   //1002608:{name:'LCT',wager:'0',precision:'6',min:'1000',poolBal:'0',myValue:'0',poolLmtToken:'100000000'},
   1002145:{name:'TWN',wager:'0',precision:'0',min:'100000',poolBal:'0',myValue:'0',poolLmtToken:'1000000000'},
   1002646:{name:'TALC',wager:'0',precision:'6',min:'10',poolBal:'0',myValue:'0',poolLmtToken:'10000'},
   1001584:{name:'SUDWA',wager:'0',precision:'0',min:'1200',poolBal:'0',myValue:'0',poolLmtToken:'12000000'},
-   1002748:{name:'BONUS',wager:'0',precision:'6',min:'40',poolBal:'0',myValue:'0',poolLmtToken:'40000'},
+//   1002748:{name:'BONUS',wager:'0',precision:'6',min:'40',poolBal:'0',myValue:'0',poolLmtToken:'40000'},
     1003341:{name:'HITHOT',wager:'0',precision:'6',min:'3',poolBal:'0',myValue:'0',poolLmtToken:'30000'},
 
    //1002748

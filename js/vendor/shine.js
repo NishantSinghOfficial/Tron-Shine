@@ -27,13 +27,24 @@ const trccontractApi = 'https://api.trongrid.io/event/contract/'+trcGameAddress+
 /***************/
  async function fetchApi(url){
    try {
-     let resp = await fetch(url);
-     let res = resp.json();
+     let response = await fetch(url);
+    //  console.log(response)
+     if (!response.ok) {
+     console.log('response error at if')
+     return "null";
+     }
+     let res = await response.json();
+    //  console.log(url)
+
      return res;
      // console.log(res);
    } catch (e) {
+    //  console.error(e);
+     console.log('resp error')
      return "null";
-     console.error(e);
+
+
+     
    }
 }
 function shortAddress(address) {
